@@ -1,0 +1,14 @@
+.chart_container {
+    height: 360px;
+}
+
+.tooltip_container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.tooltip_name {
+    padding: 0 16px;
+}

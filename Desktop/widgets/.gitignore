@@ -1,0 +1,27 @@
+# Dependency directories
+/node_modules
+
+# Environment files
+.env
+
+# Build output
+/dist
+/build
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Storybook build
+/storybook-static
+
+# TypeScript build
+/*.tsbuildinfo
+
+# NPM package files
+/*.tgz
+/*.log
