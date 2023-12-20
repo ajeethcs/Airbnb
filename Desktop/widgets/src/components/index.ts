@@ -1,2 +1,3 @@
-// export {Index as TrendLineViewer} from './LineGraph/Index'
-export * from './LineGraph'
+export {TrendLineWrapper as TrendLineViewerByClinic}  from './LineGraph'
+// export {TrendLineWrapperByCoder as TrendLineViewerByCoder}  from './LineGraph'
+export {default as PieChartViewer } from './PieChart'

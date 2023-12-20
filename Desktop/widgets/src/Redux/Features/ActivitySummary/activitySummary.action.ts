@@ -8,3 +8,11 @@ export const productivityTrend = createAsyncThunk(
     return res.data;
   }
 );
+
+export const productivityMix = createAsyncThunk(
+  "activitySummary/productivityMix",
+  async (payload:Data) => {
+    const res = await ProductivityTrendService.productivityMix(payload);
+    return res.data;
+  }
+);

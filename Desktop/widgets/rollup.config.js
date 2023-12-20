@@ -5,12 +5,10 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import terser from "@rollup/plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import importCss from "rollup-plugin-import-css";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
-import css from "rollup-plugin-css-only";
+import css from "rollup-plugin-import-css";
 const packageJson = require("./package.json");
-import postcss from "rollup-plugin-postcss";
 
 export default [
   {
@@ -28,7 +26,6 @@ export default [
       },
     ],
     plugins: [
-      // resolve(),
       nodeResolve(),
       typescript({
         tsconfig: "./tsconfig.json",
@@ -36,17 +33,14 @@ export default [
         declarationDir: "dist",
       }),
       babel({
-        exclude: "node_modules/**", // Exclude node_modules
+        exclude: "node_modules/**",
       }),
       commonjs(),
-      // css(),
+      css(),
       peerDepsExternal(),
       replace({
         preventAssignment: false,
         "process.env.NODE_ENV": '"development"',
-      }),
-      postcss({
-        extensions: [".css"],
       }),
       terser(),
     ],

@@ -1,22 +1,32 @@
 interface ActivitySummaryData {
-  date: string;
-  period: string;
-  periodType: number;
+  date?: string;
+  period?: string;
+  periodType?: number;
 }
-interface ClinicData {
-  clinicId: number;
-  clinicName: string;
-  activitySummaryDataList: ActivitySummaryData[];
+export interface ClinicData {
+  clinicId?: number;
+  clinicName?: string;
+  activitySummaryDataList?: ActivitySummaryData[];
+  percentage?:number,
+  count?:number
 }
-interface ProductivityResponse {
-  responseCode: number;
-  responseType: number;
-  data: ClinicData[] | null;
-  error: null | string;
-  accessToken: null | string;
+interface ProductivityTrendResponse {
+  responseCode?: number;
+  responseType?: number;
+  data?: ClinicData[] | null;
+  error?: null | string;
+  accessToken?: null | string;
+}
+export interface ProductivityMixResponse{
+  responseCode?: number;
+  responseType?: number;
+  data?: ClinicData[];
+  error?: null | string;
+  accessToken?: null | string;
 }
 interface ProductivityTrendState {
-  response?: ProductivityResponse | null;
+  productivityTrend?: ProductivityTrendResponse | null;
+  productivityMix?:ProductivityMixResponse | null;
 }
  
 export {ProductivityTrendState}

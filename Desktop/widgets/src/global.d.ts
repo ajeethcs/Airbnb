@@ -1,1 +1,0 @@
-declare module './components/LineGraph/Graph/LineChart.jsx'

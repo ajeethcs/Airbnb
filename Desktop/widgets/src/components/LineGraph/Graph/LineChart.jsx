@@ -1,9 +1,27 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
-import "./Line.css";
+import styled from "styled-components";
+
+const ChartContainer = styled.div`
+  height: 360px;
+`;
+const TooltipContainer = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-bottom: 5px;
+`;
+const TooltipName = styled.div`
+  padding: 0 16px;
+`;
+
+export const TruncatedLabel = ({ label }) => {
+  const truncatedLabel =
+    label.length > 10 ? label.substring(0, 10) + "..." : label;
+  return <tspan dy=".35em">{truncatedLabel}</tspan>;
+};
 
 function LineChart(props) {
-  console.log(props);
   function numFormatter(num) {
     if (num >= 1000) {
       return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
@@ -12,16 +30,9 @@ function LineChart(props) {
   }
 
   return (
-    <div className="chart_container">
+    <ChartContainer>
       <ResponsiveLine
-        data={
-          props.halfChartData
-          // props.period === 1
-          //   ? props.halfChartData
-          //   : props.period === 2
-          //   ? props.chartData
-          //   : ""
-        }
+        data={props.chartData}
         margin={{
           top: 30,
           right: 160,
@@ -54,12 +65,12 @@ function LineChart(props) {
           // legend: "count",
           // legendOffset: -40,
           // legendPosition: "middle"
-          format: (value) => `$${numFormatter(value)}`,
+          format: (value) => `${numFormatter(value)}`,
         }}
         enableGridX={false}
         yFormat={(value) =>
-          `$${Number(value).toLocaleString("en-US", {
-            minimumFractionDigits: 2,
+          `${Number(value).toLocaleString("en-US", {
+            minimumFractionDigits: 0,
           })}`
         }
         pointSize={5.5}
@@ -114,7 +125,7 @@ function LineChart(props) {
               {slice.points
                 .sort((a, b) => b.data.y - a.data.y)
                 .map((point) => (
-                  <div className="tooltip_container" key={point.id}>
+                  <TooltipContainer key={point.id}>
                     <div
                       style={{
                         background: point.serieColor,
@@ -123,17 +134,17 @@ function LineChart(props) {
                         // padding: "0 3px 0 0",
                       }}
                     ></div>
-                    <div className="tooltip_name">{point.serieId}</div>
+                    <TooltipName>{point.serieId}</TooltipName>
                     <div>
                       <strong>{point.data.yFormatted}</strong>
                     </div>
-                  </div>
+                  </TooltipContainer>
                 ))}
             </div>
           );
         }}
       />
-    </div>
+    </ChartContainer>
   );
 }
 
